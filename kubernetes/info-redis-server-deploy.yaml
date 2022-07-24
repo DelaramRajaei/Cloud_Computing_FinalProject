@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: note-server
+  name: note-redis-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: note-server
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: note-server
+    spec:
+      containers:
+        - image: deliiiled/cc_fp:redis  
+          name: redis
+          ports:
+            - containerPort: 6379
+          # volumeMounts:
+          #   - mountPath: /data
+          #     name: data
+      # volumes:
+      #   - name: data
+      #     persistentVolumeClaim:
+      #       claimName: info-app-persistent-volume-claim
+status: { }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: note-server
+  name: note-server-server
+spec:
+  ports:
+    - port: 6379
+      protocol: TCP
+      targetPort: 6379

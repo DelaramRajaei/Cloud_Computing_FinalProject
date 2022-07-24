@@ -1,0 +1,7 @@
+{
+  "PORT": 3001,
+  "URL_EXP": 60 ,
+  "DB_URL":"redis://:aaasssdfg@redis-server:6379"
+  "DB_USER":""
+  "DB_PASSWORD":"aaasssdfg"
+}
